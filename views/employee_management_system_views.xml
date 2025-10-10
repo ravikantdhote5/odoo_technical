@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form" model="ir.ui.view">
+        <field name="name">emp.employee.form</field>
+        <field name="model">emp.employee</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_promote"
+                            type="object"
+                            string="Promote"
+                            class="btn-primary"
+                            confirm="Are you sure you want to promote this employee?"/>
+
+                    <button name="action_view_skills"
+                            type="object"
+                            string="View All Skills"
+                            invisible="not has_skills"
+                            class="btn btn-primary"/>
+
+                    <button name="create_record"
+                            type="object"
+                            string="Create Record"
+                            class="btn-primary"
+                            invisible="1"/>
+
+                    <button name="update"
+                            type="object"
+                            string="Update"
+                            class="btn-primary"
+                            invisible="1"/>
+
+                    <button name="search_method"
+                            type="object"
+                            string="Search"
+                            class="btn-primary"
+                            invisible="1"/>
+
+                    <button name="delete_method"
+                            type="object"
+                            string="Delete"
+                            class="btn-primary"
+                            invisible="1"/>
+                    <button name="button_log_message"
+                            type="object"
+                            string="Log Message"/>
+
+                    <button name="owl_message"
+                            type="button"
+                            string="Show OWL"
+                            onclick="showHelloWorld()"
+                            class="btn btn-primary"/>
+
+                    <field name="status" widget="statusbar" options="{'clickable': True}" readonly="True"/>
+                </header>
+                <sheet>
+                    <group col="2">
+                        <group>
+                            <separator string="Personal Info" colspan="2"/>
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="date_of_birth"/>
+                            <field name="age"/>
+                            <field name="gender" required="True"/>
+                            <field name="address"/>
+                        </group>
+
+                        <group>
+                            <separator string="Job Information" colspan="2"/>
+                            <field name="hire_date"/>
+                            <field name="salary"/>
+                            <field name="user_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="emp_department_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="hod_name" invisible="emp_department_id == False"/>
+                            <field name="status" readonly="True"/>
+                            <field name="skill_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_employee_list" model="ir.ui.view">
+        <field name="name">emp.employee.list</field>
+        <field name="model">emp.employee</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="email"/>
+                <field name="status"/>
+                <field name="emp_department_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_employee_kanban" model="ir.ui.view">
+        <field name="name">emp.employee.kanban</field>
+        <field name="model">emp.employee</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_record">
+                            <div class="o_kanban_record_top">
+                                <strong>
+                                    <field name="first_name"/>
+                                    <field name="last_name"/>
+                                </strong>
+                            </div>
+                            <div>
+                                <span>
+                                    <strong>Status:</strong>
+                                    <field name="status"/>
+                                </span>
+                                <br/>
+                                <span>
+                                    <strong>Department:</strong>
+                                    <field name="emp_department_id"/>
+                                </span>
+                                <br/>
+                                <span>
+                                    <strong>Skills:</strong>
+                                </span>
+                                <div>
+                                    <field name="skill_ids" widget="many2many_tags"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_department_list" model="ir.ui.view">
+        <field name="name">emp.department.list</field>
+        <field name="model">emp.department</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="hod_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_department_form" model="ir.ui.view">
+        <field name="name">emp.department.form</field>
+        <field name="model">emp.department</field>
+        <field name="arch" type="xml">
+            <form string="Department">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="hod_id" domain="[('emp_department_id', '=', id)]"/>
+                        <field name="employee_ids" widget="one2many_list"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_emp_employee_pivot" model="ir.ui.view">
+        <field name="name">emp.employee.pivot</field>
+        <field name="model">emp.employee</field>
+        <field name="arch" type="xml">
+            <pivot string="Employees Pivot">
+                <field name="emp_department_id" type="row"/>
+                <field name="status" type="col"/>
+                <field name="salary" type="measure"/>
+                <field name="age" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_emp_employee_graph" model="ir.ui.view">
+        <field name="name">emp.employee.graph</field>
+        <field name="model">emp.employee</field>
+        <field name="arch" type="xml">
+            <graph string="Employees Graph" type="bar">
+                <field name="emp_department_id" type="row"/>
+                <field name="id" type="measure" operator="count"/>
+                <field name="status" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_emp_employee_search" model="ir.ui.view">
+        <field name="name">emp.employee.search</field>
+        <field name="model">emp.employee</field>
+        <field name="arch" type="xml">
+            <search string="Employee Search">
+                <field name="first_name" string="First Name"/>
+                <field name="last_name" string="Last Name"/>
+                <field name="email" string="Email"/>
+
+                <filter name="filter_interns" string="Interns" domain="[('status', '=', 'intern')]"/>
+                <filter name="filter_juniors" string="Juniors" domain="[('status', '=', 'junior')]"/>
+                <filter name="filter_seniors" string="Seniors" domain="[('status', '=', 'senior')]"/>
+                <filter name="filter_leads" string="Leads" domain="[('status', '=', 'lead')]"/>
+                <filter name="filter_managers" string="Managers" domain="[('status', '=', 'manager')]"/>
+                <filter name="group_by_department" string="Department"
+                        context="{'group_by':'emp_department_id'}"/>
+            </search>
+        </field>
+    </record>
+</odoo>

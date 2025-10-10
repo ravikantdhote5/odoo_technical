@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <menuitem id="menu_hr_root"
+              name="HR"
+              sequence="10"
+              groups="base.group_user"/>
+
+    <record id="action_employee" model="ir.actions.act_window">
+      <field name="name">Employees</field>
+      <field name="res_model">emp.employee</field>
+      <field name="view_mode">kanban,list,form,graph,pivot</field>
+    </record>
+
+    <menuitem id="menu_employee_root"
+              name="Employees"
+              parent="menu_hr_root"
+              sequence="1"
+              groups="base.group_user"/>
+
+    <menuitem id="menu_employee"
+              name="Manage Employees"
+              parent="menu_employee_root"
+              action="action_employee"
+              sequence="1"
+              groups="base.group_user"/>
+
+    <record id="action_skill" model="ir.actions.act_window">
+      <field name="name">Skills</field>
+      <field name="res_model">emp.skill</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_skill_root"
+              name="Skills"
+              parent="menu_hr_root"
+              sequence="2"
+              groups="employee_management_system.group_employee_manager"/>
+
+    <menuitem id="menu_skill"
+              name="Manage Skills"
+              parent="menu_skill_root"
+              action="action_skill"
+              sequence="1"
+              groups="employee_management_system.group_employee_manager"/>
+
+    <record id="action_department" model="ir.actions.act_window">
+      <field name="name">Departments</field>
+      <field name="res_model">emp.department</field>
+      <field name="view_mode">list,form</field>
+      <field name="context">{'edit': False, 'create': True, 'delete': False}</field>
+    </record>
+
+    <menuitem id="menu_department_root"
+              name="Department"
+              parent="menu_hr_root"
+              sequence="3"
+              groups="employee_management_system.group_employee_manager"/>
+
+    <menuitem id="menu_manage_departments"
+              name="Manage Departments"
+              parent="menu_department_root"
+              action="action_department"
+              sequence="1"
+              groups="employee_management_system.group_employee_manager"/>
+
+
+     <menuitem id="menu_feedback"
+                  name="Feedback!!!"
+                  parent="menu_hr_root"
+                  action="action_feedback"/>
+  </data>
+</odoo>

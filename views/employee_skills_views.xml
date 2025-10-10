@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_skill_list" model="ir.ui.view">
+            <field name="name">emp.skill.list</field>
+            <field name="model">emp.skill</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="description"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_skill_form" model="ir.ui.view">
+            <field name="name">emp.skill.form</field>
+            <field name="model">emp.skill</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="employee_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+</odoo>
