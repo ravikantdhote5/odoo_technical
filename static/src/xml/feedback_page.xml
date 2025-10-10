@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+  <t t-name="employee_management_system.FeedbackTemplate">
+  <div>
+  <h1 style="text-align: center;">Feedback Form!</h1>
+      <form>
+            <input t-model="feedback.name" placeholder="Name" required="required"/>
+            <input t-model="feedback.email" placeholder="Email" type="email" required="required"/>
+            <textarea t-model="feedback.comments" placeholder="Comments" required="required"></textarea>
+            <button type="button" t-on-click="submitFeedback">Submit</button>
+      </form>
+    </div>
+  </t>
+</templates>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="employee_management_system.GlButton" owl="1">
+        <div class="d-flex justify-content-center align-items-center"
+             style="height: 100%;">
+            <h1>Employee Management System</h1>
+        </div>
+    </t>
+</templates>

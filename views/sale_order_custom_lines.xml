@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="view_order_form_inherit_custom_lines" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.custom.lines</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_open_custom_order_lines_wizard"
+                        string="Manage Order Lines"
+                        type="object"
+                        class="btn-primary"/>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_sync_order_lines"
+                        string="Sync Custom Lines"
+                        type="object"
+                        class="oe_highlight"/>
+            </xpath>
+
+            <xpath expr="//page[@name='customer_signature']" position="after">
+                <page string="Custom Order Lines" name="custom_order_lines">
+                    <field name="custom_order_line_ids">
+                        <list editable="bottom" delete="false">
+                            <field name="product_id"/>
+                            <field name="name"/>
+                            <field name="product_uom_qty"/>
+                            <field name="price_unit"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_open_custom_order_line_wizard" model="ir.actions.act_window">
+        <field name="name">Custom Order Line Wizard</field>
+        <field name="res_model">custom.order.line.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    </data>
+</odoo>

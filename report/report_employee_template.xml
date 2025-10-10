@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="report_employee_template">
+        <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="employee" t-set="dummy" t-value="1"/>
+
+        <div class="page">
+            <h1>Employee Report</h1>
+            <table class="table table-bordered" style="width:100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Date of Birth</th>
+                        <th>Gender</th>
+                        <th>Department</th>
+                        <th>Skills</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="docs" t-as="employee">
+                        <tr>
+                            <td>
+                                <t t-esc="(employee.first_name or '') + ' ' + (employee.last_name or '')"/>
+                            </td>
+                            <td><t t-esc="employee.email or ''"/></td>
+                            <td><t t-esc="employee.phone or ''"/></td>
+                            <td><t t-esc="employee.date_of_birth or ''"/></td>
+                            <td>
+                                <t t-esc="dict(employee._fields['gender'].selection).get(employee.gender) or ''"/>
+                            </td>
+                            <td>
+                                <t t-esc="employee.emp_department_id.name or 'N/A'"/>
+                            </td>
+                            <td>
+                                <t t-esc="', '.join(skill.name for skill in employee.skill_ids) or ''"/>
+                            </td>
+                            <td>
+                                <t t-esc="dict(employee._fields['status'].selection).get(employee.status) or ''"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+    </t>
+    </template>
+    </data>
+</odoo>

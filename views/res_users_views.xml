@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_users_form_inherit_emp_department" model="ir.ui.view">
+    <field name="name">res.users.form.inherit.emp.department</field>
+    <field name="model">res.users</field>
+    <field name="inherit_id" ref="base.view_users_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//sheet//page[contains(@name, 'access_rights')]/group" position="inside">
+            <field name="emp_department_id"/>
+        </xpath>
+    </field>
+  </record>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="view_custom_order_line_wizard_form" model="ir.ui.view">
+    <field name="name">custom.order.line.wizard.form</field>
+    <field name="model">custom.order.line.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Manage Order Lines">
+            <group>
+                <field name="order_id" readonly="1"/>
+                <field name="wizard_line_ids">
+                    <list editable="bottom">
+                        <field name="product_id"/>
+                        <field name="name"/>
+                        <field name="product_uom_qty"/>
+                        <field name="price_unit"/>
+                        <field name="tax_id"/>
+                    </list>
+                </field>
+            </group>
+            <footer>
+                <button string="Move to Custom Order Lines"
+                        type="object"
+                        name="action_move_to_custom_lines"
+                        class="btn-primary"/>
+                <button string="Cancel"
+                        class="btn-secondary"
+                        special="cancel"/>
+            </footer>
+        </form>
+    </field>
+    </record>
+
+    <record id="action_open_custom_order_line_wizard" model="ir.actions.act_window">
+        <field name="name">Manage Order Lines</field>
+        <field name="res_model">custom.order.line.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_custom_order_line_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+    </data>
+</odoo>

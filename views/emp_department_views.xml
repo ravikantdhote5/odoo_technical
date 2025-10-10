@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="view_department_form_hod" model="ir.ui.view">
+      <field name="name">emp.department.form.hod</field>
+      <field name="model">emp.department</field>
+      <field name="priority" eval="20"/>
+      <field name="arch" type="xml">
+        <form string="Department">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="hod_id" domain="[('emp_department_id', '=', id)]"/>
+              <field name="employee_ids" widget="one2many_list"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+  </data>
+</odoo>
