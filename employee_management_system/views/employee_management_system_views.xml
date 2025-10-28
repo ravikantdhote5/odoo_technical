@@ -4,7 +4,7 @@
         <field name="name">emp.employee.form</field>
         <field name="model">emp.employee</field>
         <field name="arch" type="xml">
-            <form>
+            <form string="Employee" js_class="custom_form">
                 <header>
                     <button name="action_promote"
                             type="object"
@@ -41,6 +41,7 @@
                             string="Delete"
                             class="btn-primary"
                             invisible="1"/>
+
                     <button name="button_log_message"
                             type="object"
                             string="Log Message"/>
@@ -51,6 +52,7 @@
                             onclick="showHelloWorld()"
                             class="btn btn-primary"/>
 
+                    <field name="is_toggle" widget="custom_boolean_toggle"/>
                     <field name="status" widget="statusbar" options="{'clickable': True}" readonly="True"/>
                 </header>
                 <sheet>
@@ -74,8 +76,12 @@
                             <field name="user_id" options="{'no_create': True, 'no_open': True}"/>
                             <field name="emp_department_id" options="{'no_create': True, 'no_open': True}"/>
                             <field name="hod_name" invisible="emp_department_id == False"/>
+                            <field name="color" widget="color" string="Pick a Color"/>
+
+                            <field name="is_favourite" widget="boolean_toggle"/>
                             <field name="status" readonly="True"/>
                             <field name="skill_ids" widget="many2many_tags"/>
+                            <field name="priority" widget="priority"/>
                         </group>
                     </group>
                 </sheet>

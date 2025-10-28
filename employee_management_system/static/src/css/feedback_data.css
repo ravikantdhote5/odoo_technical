@@ -1,0 +1,39 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+/* Feedback List Styles */
+.feedback-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feedback-item {
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+}
+
+.feedback-header {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.feedback-comments {
+  margin-top: 10px;
+  font-style: italic;
+  color: #555;
+}
+
+/* No feedback available message */
+p {
+  font-style: italic;
+  color: #888;
+}

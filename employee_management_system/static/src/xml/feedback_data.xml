@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+  <t t-name="employee_management_system.EmployeeFeedbackListTemplate">
+    <div>
+      <h2>Employee Feedbacks</h2>
+      <t t-if="state.feedbacks">
+        <ul>
+          <t t-foreach="state.feedbacks" t-as="feedback" t-key="feedback.id">
+            <li>
+              <strong><t t-esc="feedback.name"/></strong> (<t t-esc="feedback.email"/>):
+              <p><t t-esc="feedback.comments"/></p>
+            </li>
+          </t>
+        </ul>
+      </t>
+      <t t-else="">
+        <p>No feedbacks available.</p>
+      </t>
+    </div>
+  </t>
+</templates>

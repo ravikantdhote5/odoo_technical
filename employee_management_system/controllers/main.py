@@ -30,8 +30,17 @@ class MyFormController(http.Controller):
         return f"Submitted name: {name}"
 
 
-class EmployeeManagementController(http.Controller):
-
+class EmployeeController(http.Controller):
     @http.route('/employee_management/custom_page', type='http', auth='user')
     def custom_page(self, **kwargs):
         return request.render('employee_management_system.custom_employee_page')
+
+
+class EmployeeManagementController(http.Controller):
+    @http.route('/employee_management_system/custom_rpc', auth='public', type='json', csrf=False)
+    def custom_rpc(self, **kwargs):
+        records = request.env['employee.feedback'].sudo().search_count([])
+        return {
+            'count': records,
+            'message': 'Data retrieved successfully'
+        }

@@ -37,6 +37,10 @@ class Employee(models.Model):
     )
     has_skills = fields.Boolean(string='Has Skills', compute='_compute_has_skills')
     hod_name = fields.Char(string='Head of Department', related='emp_department_id.hod_id.full_name', store=True)
+    color = fields.Char('Color', default='#FFFFFF')
+
+    is_favourite = fields.Boolean(string="Favourite")
+    is_toggle = fields.Boolean(string="Toggle")
 
     _sql_constraints = [
         ('email_unique', 'unique(email)', 'Email must be unique!'),
@@ -57,6 +61,15 @@ class Employee(models.Model):
         'skill_id',
         string='Skills'
     )
+
+    priority = fields.Selection([
+        ('1', '★☆☆☆☆'),
+        ('2', '★★☆☆☆'),
+        ('3', '★★★☆☆'),
+        ('4', '★★★★☆'),
+        ('5', '★★★★★'),
+        ('6', '★★★★★★'),
+    ], string='Priority', default='1')
 
     @api.depends('skill_ids')
     def _compute_has_skills(self):

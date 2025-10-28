@@ -33,18 +33,19 @@
     ],
     'assets': {
         'web.assets_backend': [
+            'employee_management_system/static/src/js/custom_boolean_toggle.js',
+            'employee_management_system/static/src/js/employee_rpc.js',
+            'employee_management_system/static/src/xml/employee_rpc.xml',
             'employee_management_system/static/src/js/feedback_page.js',
             'employee_management_system/static/src/xml/feedback_page.xml',
             'employee_management_system/static/src/css/feedback_page.css',
+            'employee_management_system/static/src/js/feedback_data.js',
+            'employee_management_system/static/src/xml/feedback_data.xml',
             'employee_management_system/static/src/js/global_button_controller.js',
-            # 'employee_management_system/static/src/js/control_panel_extension.js',
-            # 'employee_management_system/static/src/xml/client_action_template.xml',
             'employee_management_system/static/src/xml/global_button_template.xml',
-            # 'employee_management_system/static/src/xml/gl_button.xml',
+            'employee_management_system/static/src/js/custom_form_controller.js',
         ],
     },
-
-
 
     'installable': True,
     'application': True,

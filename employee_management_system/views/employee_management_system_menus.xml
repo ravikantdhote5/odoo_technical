@@ -68,6 +68,24 @@
      <menuitem id="menu_feedback"
                   name="Feedback!!!"
                   parent="menu_hr_root"
+                  sequence="3"/>
+
+     <menuitem id="menu_feedback_form"
+                  name="Feedback Form"
+                  parent="menu_feedback"
+                  sequence="1"
                   action="action_feedback"/>
+
+     <menuitem id="menu_feedback_data"
+                  name="Feedback Data"
+                  parent="menu_feedback"
+                  sequence="2"
+                  action="action_employee_feedback"/>
+
+     <menuitem id="employee_management_submenu"
+               name="Rpc"
+               parent="menu_hr_root"
+               action="action_rpc"
+               sequence="4"/>
   </data>
 </odoo>
