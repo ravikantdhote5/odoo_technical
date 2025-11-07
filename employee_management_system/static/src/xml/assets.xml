@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-  <template id="custom_form_assets" name="Employee Custom Form Assets" inherit_id="web.assets_backend">
-    <xpath expr="." position="inside">
-      <script type="module" src="/employee_management_system/static/src/js/custom_form_controller.js"></script>
-    </xpath>
-  </template>

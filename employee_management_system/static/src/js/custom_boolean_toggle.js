@@ -20,6 +20,7 @@ export class CustomBooleanToggle extends BooleanField {
 //    }
 }
 
+
 registry.category("fields").add("custom_boolean_toggle", {
     component: CustomBooleanToggle
 });

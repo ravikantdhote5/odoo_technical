@@ -14,4 +14,10 @@
         <field name="name">Employee Feedback Data</field>
         <field name="tag">employee_management_system.EmployeeFeedbackList</field>
     </record>
+
+    <record id="action_open_product" model="ir.actions.client">
+        <field name="name">Product Popup</field>
+        <field name="tag">employee_management_system.action_open_product_list</field>
+        <field name="target">new</field>
+    </record>
 </odoo>

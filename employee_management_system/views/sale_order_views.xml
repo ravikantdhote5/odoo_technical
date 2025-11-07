@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="view_order_form_inherit_widget_icon" model="ir.ui.view">
+    <field name="name">sale.order.form.custom.widget.icon</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='payment_term_id']" position="after">
+          <div class="o_custom_widget_icon" style="margin-top:10px;">
+            <button type="object"
+                    name="action_open_product_list"
+                    class="btn btn-link o_quantity_icon_btn"
+                    title="View Product Quantities"
+                    style="padding:0; border:none;">
+              <img src="/employee_management_system/static/src/img/qicon.png"
+                   alt="View Product Quantities"
+                   style="height:24px;width:24px;cursor:pointer;"/>
+            </button>
+          </div>
+          <div id="product_list_container"></div>
+        </xpath>
+    </field>
+  </record>
+</odoo>

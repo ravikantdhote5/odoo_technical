@@ -103,6 +103,27 @@ class SaleOrder(models.Model):
         }
 
 
+    def action_open_product_list(self):
+        self.ensure_one()  # Ensure single record
+
+        # Prepare product lines for QWeb
+        products = []
+        for line in self.order_line:
+            if line.product_id:  # Skip lines with no product
+                products.append({
+                    'product_id': (line.product_id.id, line.product_id.name),
+                    'product_uom_qty': line.product_uom_qty or 0,
+                })
+
+        # Render the QWeb template
+        html = self.env['ir.qweb']._render(
+            'employee_management_system.product_list_template',
+            {'products': products}
+        )
+
+        return html
+
+
 class SaleOrderLineCustom(models.Model):
     _name = 'sale.order.line.custom'
     _description = 'Custom Sale Order Line'

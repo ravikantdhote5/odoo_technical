@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="employee_management_system.ProductInfoPopupExtended"
+       t-inherit="point_of_sale.ProductInfoPopup"
+       t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('section-inventory')]" position="before">
+            <div class="section-pos-description mt-3 mb-4 pb-4 border-bottom text-start">
+                <h3 class="section-title">POS Description</h3>
+                <div class="section-description-body">
+                    <t t-if="props.product.pos_description">
+                        <span t-esc="props.product.pos_description"/>
+                    </t>
+                    <t t-else="">
+                        <span>No description set</span>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </t>
+</templates>

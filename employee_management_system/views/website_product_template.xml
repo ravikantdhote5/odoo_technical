@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="shop_product_item_custom_field"
+            inherit_id="website_sale.product"
+            name="Shop Product Item Custom Field">
+
+    <xpath expr="//div[@id='product_details']" position="inside">
+      <t t-if="product.slices_per_pizza">
+        <div class="mt16 o_wsale_slices_counter"
+             t-att-data-slices-per="product.slices_per_pizza">
+<!--        <input type="hidden" name="slice_you_got" value="0"/>-->
+        <div class="o_quantity_output_calc border rounded bg-light p-3"
+                         style="max-width: 280px;"/>
+
+          <strong>Slices per Pizza: </strong>
+          <input type="number"
+               class="slices-input"
+               t-att-data-slices-per="product.slices_per_pizza or 1"
+               t-att-value="product.slices_per_pizza or 1"/>
+            <br/>
+          <strong>Total Slices: </strong>
+          <span class="slices_count_display">0</span>
+        </div>
+      </t>
+    </xpath>
+  </template>
+</odoo>
